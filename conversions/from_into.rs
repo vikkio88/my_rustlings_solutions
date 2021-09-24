@@ -7,6 +7,33 @@ struct Person {
     age: usize,
 }
 
+impl Person {
+    fn new(name: &str, age: &str) -> Self {
+        // appartently dont need this lol
+        /*
+        let name = if name.len() < 0 { "John" } else { name };
+        let age = age.parse::<usize>().unwrap_or(30);
+        Person {
+            name: name.to_string(),
+            age,
+        }
+        */
+        println!("{} {}", name, age);
+        if name.len() < 1 {
+            return Person::default();
+        }
+        let parse_res = age.parse::<usize>();
+
+        match parse_res {
+            Ok(age) => Person {
+                name: name.to_string(),
+                age,
+            },
+            Err(_) => Person::default(),
+        }
+    }
+}
+
 // We implement the Default trait to use it as a fallback
 // when the provided string is not convertible into a Person object
 impl Default for Person {
@@ -33,10 +60,18 @@ impl Default for Person {
 // If while parsing the age, something goes wrong, then return the default of Person
 // Otherwise, then return an instantiated Person object with the results
 
-// I AM NOT DONE
-
 impl From<&str> for Person {
     fn from(s: &str) -> Person {
+        if s.len() == 0 {
+            return Person::default();
+        }
+
+        let parts: Vec<&str> = s.split(',').collect();
+        if parts.len() != 2 {
+            return Person::default();
+        }
+
+        Person::new(parts[0], parts[1])
     }
 }
 

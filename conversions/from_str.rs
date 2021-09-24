@@ -11,8 +11,6 @@ struct Person {
     age: usize,
 }
 
-// I AM NOT DONE
-
 // Steps:
 // 1. If the length of the provided string is 0, an error should be returned
 // 2. Split the given string on the commas present in it
@@ -20,12 +18,27 @@ struct Person {
 // 4. Extract the first element from the split operation and use it as the name
 // 5. Extract the other element from the split operation and parse it into a `usize` as the age
 //    with something like `"4".parse::<usize>()`
-// 6. If while extracting the name and the age something goes wrong, an error should be returned
+// 5. If while extracting the name and the age something goes wrong, an error should be returned
 // If everything goes well, then return a Result of a Person object
 
 impl FromStr for Person {
     type Err = Box<dyn error::Error>;
     fn from_str(s: &str) -> Result<Person, Self::Err> {
+        let parts: Vec<&str> = s.split(',').collect();
+
+        if parts.len() != 2 {
+            return Err("Yo".into());
+        }
+
+        if parts[0].len() < 1 {
+            return Err("Yo".into());
+        }
+
+        let age = parts[1];
+        Ok(Person {
+            name: parts[0].to_string(),
+            age: age.parse::<usize>()?,
+        })
     }
 }
 
