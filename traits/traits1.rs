@@ -2,21 +2,23 @@
 // Time to implement some traits!
 //
 // Your task is to implement the trait
-// `AppendBar' for the type `String'.
+// `AppendBar` for the type `String`.
 //
 // The trait AppendBar has only one function,
 // which appends "Bar" to any object
 // implementing this trait.
+// Execute `rustlings hint traits1` or use the `hint` watch subcommand for a hint.
 
 trait AppendBar {
     fn append_bar(self) -> Self;
 }
 
 impl AppendBar for String {
-    fn append_bar(self) -> Self {
-        let mut  s = self.clone();
-        s.push_str("Bar");
-        s
+    // TODO: Implement `AppendBar` for type `String`.
+    // CHECK THIS PLEASE, maybe should not mutate self but clone?
+    fn append_bar(mut self) -> Self {
+        self.push_str("Bar");
+        self
     }
 }
 
@@ -31,12 +33,12 @@ mod tests {
     use super::*;
 
     #[test]
-    fn is_FooBar() {
+    fn is_foo_bar() {
         assert_eq!(String::from("Foo").append_bar(), String::from("FooBar"));
     }
 
     #[test]
-    fn is_BarBar() {
+    fn is_bar_bar() {
         assert_eq!(
             String::from("").append_bar().append_bar(),
             String::from("BarBar")

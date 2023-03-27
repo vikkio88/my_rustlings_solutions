@@ -1,5 +1,6 @@
 // move_semantics1.rs
-// Make me compile! Execute `rustlings hint move_semantics1` for hints :)
+// Execute `rustlings hint move_semantics1` or use the `hint` watch subcommand for a hint.
+
 
 fn main() {
     let vec0 = Vec::new();
@@ -20,5 +21,5 @@ fn fill_vec(vec: Vec<i32>) -> Vec<i32> {
     vec.push(44);
     vec.push(66);
 
-    vec
+    vec.to_vec()
 }

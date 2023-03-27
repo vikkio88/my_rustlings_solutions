@@ -6,7 +6,7 @@
 // we define a custom error type to make it possible for callers to decide
 // what to do next when our function returns an error.
 
-// Make these tests pass! Execute `rustlings hint errors6` for hints :)
+// Execute `rustlings hint errors6` or use the `hint` watch subcommand for a hint.
 
 use std::num::ParseIntError;
 
@@ -22,22 +22,14 @@ impl ParsePosNonzeroError {
         ParsePosNonzeroError::Creation(err)
     }
     // TODO: add another error conversion function here.
-}
-
-fn parse_pos_nonzero(s: &str) -> Result<PositiveNonzeroInteger, ParsePosNonzeroError> {
-    // TODO: change this to return an appropriate error instead of panicking
-    // when `parse()` returns an error.
-    let mut x: i64;
-
-    match s.parse() {
-        Ok(value) => {
-            x = value;
-        }
-        Err(err) => {
-            return Err(ParsePosNonzeroError::ParseInt(err));
-        }
+    // fn from_parseint...
+    fn from_parseint(err: ParseIntError) -> ParsePosNonzeroError {
+        ParsePosNonzeroError::ParseInt(err)
     }
-
+}
+//I hated this
+fn parse_pos_nonzero(s: &str) -> Result<PositiveNonzeroInteger, ParsePosNonzeroError> {
+    let x: i64 = s.parse().map_err(ParsePosNonzeroError::from_parseint)?;
     PositiveNonzeroInteger::new(x).map_err(ParsePosNonzeroError::from_creation)
 }
 

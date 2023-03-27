@@ -1,7 +1,8 @@
 // variables6.rs
-// Make me compile! Execute the command `rustlings hint variables6` if you want a hint :)
+// Execute `rustlings hint variables6` or use the `hint` watch subcommand for a hint.
 
-const NUMBER: i8 = 3;
+
+const NUMBER: u8 = 3;
 fn main() {
     println!("Number {}", NUMBER);
 }

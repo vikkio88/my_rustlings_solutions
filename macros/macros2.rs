@@ -1,13 +1,14 @@
 // macros2.rs
-// Make me compile! Execute `rustlings hint macros2` for hints :)
+// Execute `rustlings hint macros2` or use the `hint` watch subcommand for a hint.
 
-// oh man Macros are scoped by position :(
+// I AM NOT DONE
+
+fn main() {
+    my_macro!();
+}
+
 macro_rules! my_macro {
     () => {
         println!("Check out my macro!");
     };
-}
-
-fn main() {
-    my_macro!();
 }

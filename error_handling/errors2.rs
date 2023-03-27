@@ -14,7 +14,8 @@
 // and add.
 
 // There are at least two ways to implement this that are both correct-- but
-// one is a lot shorter! Execute `rustlings hint errors2` for hints to both ways.
+// one is a lot shorter!
+// Execute `rustlings hint errors2` or use the `hint` watch subcommand for a hint.
 
 use std::num::ParseIntError;
 
@@ -23,8 +24,8 @@ pub fn total_cost(item_quantity: &str) -> Result<i32, ParseIntError> {
     let cost_per_item = 5;
     let qty = item_quantity.parse::<i32>();
     match qty {
-        Ok(q) => Ok(q * cost_per_item + processing_fee),
-        Err(kind) => Err(kind),
+        Ok(value) => Ok(value * cost_per_item + processing_fee),
+        Err(err) => Err(err),
     }
 }
 

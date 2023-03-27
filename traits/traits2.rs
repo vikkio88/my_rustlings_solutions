@@ -1,7 +1,7 @@
 // traits2.rs
 //
 // Your task is to implement the trait
-// `AppendBar' for a vector of strings.
+// `AppendBar` for a vector of strings.
 //
 // To implement this trait, consider for
 // a moment what it means to 'append "Bar"'
@@ -9,20 +9,25 @@
 //
 // No boiler plate code this time,
 // you can do this!
+// Execute `rustlings hint traits2` or use the `hint` watch subcommand for a hint.
 
 trait AppendBar {
-    fn append_bar(&mut self) -> Self;
+    fn append_bar(self) -> Self;
 }
 
+// TODO: Implement trait `AppendBar` for a vector of strings.
 impl AppendBar for Vec<String> {
-    fn append_bar(&mut self) -> Self {
-        let mut v = self.clone(); 
-        v.push("Bar".to_string());
-        v
+    fn append_bar(mut self) -> Self {
+        // this would do of adding bar to every string in the array?
+        // for mut i in &mut self {
+        //     i.push_str("Bar");
+        // }
+
+        self.push("Bar".into());
+
+        self
     }
 }
-
-//TODO: Add your code here
 
 #[cfg(test)]
 mod tests {
